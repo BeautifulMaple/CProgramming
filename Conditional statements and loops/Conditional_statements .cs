@@ -107,7 +107,7 @@ public class test
         Console.Write("직업을 선택하세요: ");
         string job = Console.ReadLine();
 
-        switch(job)
+        switch(job)ds
         {
             case "1":
                 Console.WriteLine("전사를 선택하셨습니다.");
