@@ -2,7 +2,7 @@
 
 public class Solution
 {
-    static void Main(string[] args)d
+    static void Main(string[] args)
     {
         // 1) 홀수 / 짝수 구분하기
         //Console.WriteLine("번호를 입력하세요 : ");
