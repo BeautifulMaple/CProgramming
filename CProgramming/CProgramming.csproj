@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="D:\CProgramming\CProgramming\Operators and Strings\Strings.cs" Link="Strings.cs" />
+  </ItemGroup>
+
 </Project>

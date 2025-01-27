@@ -6,24 +6,50 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter two numbers: ");
-            string input = Console.ReadLine();    // "10 20"과 같은 문자열을 입력받음
+            int num1 = 20; int num2 = 10;
+            
+            Console.WriteLine("산술연산자");
 
-            string[] numbers = input.Split(' ');  // 문자열을 공백으로 구분하여 배열로 만듦
-            // { "10", "20" }
-            int num1 = int.Parse(numbers[0]);     // 첫 번째 값을 정수로 변환하여 저장
-            int num2 = int.Parse(numbers[1]);     // 두 번째 값을 정수로 변환하여 저장
+            Console.WriteLine(num1 + num2);
+            Console.WriteLine(num1 - num2);
+            Console.WriteLine(num1 / num2);
+            Console.WriteLine(num1 * num1);
+            Console.WriteLine(num1 % num2);
 
-            int sum = num1 + num2;                // 두 수를 더하여 결과를 계산
+            Console.WriteLine(); // 빈줄 출력
 
-            Console.WriteLine("The sum of {0} and {1} is {2}.", num1, num2, sum);
+            Console.WriteLine("관계연산자");
+            Console.WriteLine(num1 == num2);
+            Console.WriteLine(num1 != num2);
+            Console.WriteLine(num1 > num2);
+            Console.WriteLine(num1 < num1);
+            Console.WriteLine(num1 >= num2);
+            Console.WriteLine(num1 <= num2);
 
-            // var 키워드
-            // 변수를 선언하면 변수의 자료형이 컴파일러에 의해 자동으로 결정됩니다. 
-            var num = 10;         // int 자료형으로 결정됨
-            var name = "kero";   // string 자료형으로 결정됨
-            var pi = 3.141592;    // double 자료형으로 결정됨
+            Console.WriteLine(); // 빈줄 출력
 
+            Console.WriteLine("논리연산자");
+            int num3 = 15;
+            Console.WriteLine(0 < num3 && num3 <= 20);  // 0 과 20사이의 포함되면
+            Console.WriteLine(0 > num3 || num3 > 20);   // 0 ~ 20 사이에 포함되지 않다면
+            Console.WriteLine(!(0 < num3 && num3 <= 20));
+
+            Console.WriteLine(); // 빈줄 출력
+
+            int a = 0b1100; // 12 (2진수)
+            int b = 0b1010; // 10 (2진수)
+
+            int and = a & b; // 0b1000 (8)
+            int or = a | b; // 0b1110 (14)
+            int xor = a ^ b; // 0b0110 (6)
+
+            int c = 0b1011; // 11 (2진수)
+            int leftShift = c << 2; // 0b101100 (44)
+            int rightShift = c >> 1; // 0b0101 (5)
+
+            int d = 0b1100; // 12 (2진수)
+            int bit3 = (d >> 2) & 0b1; // 1 (3번째 비트)
+            d |= 0b1000; // 0b1100 | 0b1000 = 0b1100 (12)
         }
     }
 }
