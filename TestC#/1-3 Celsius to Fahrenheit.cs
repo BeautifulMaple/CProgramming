@@ -4,37 +4,26 @@ public class test
 {
 	static void Main(string[] args)
 	{
+        int playerScore = 80;
 
-        Console.WriteLine("키(cm)를 입력하세요:");
-        double heightCm = double.Parse(Console.ReadLine());
-
-        Console.WriteLine("몸무게(kg)를 입력하세요:");
-        double weight = double.Parse(Console.ReadLine());
-
-        double heightm = heightCm / 100;
-
-		double bmi = weight / (heightm * heightm);
-
-		Console.WriteLine($"BMI: {bmi:F2}");
-
-        // BMI 범주 출력
-        if (bmi < 18.5)
+        if (playerScore >= 70)
         {
-            Console.WriteLine("결과: 저체중");
+            Console.WriteLine("플레이어의 점수는 70점 이상입니다. 합격입니다!");
         }
-        else if (bmi < 25)
+        Console.WriteLine("프로그램이 종료됩니다.");
+
+        Console.WriteLine();
+
+        int itemCount = 5;
+        string itemName = "HP 포션";
+
+        if (itemCount > 0)
         {
-            Console.WriteLine("결과: 정상");
-        }
-        else if (bmi < 30)
-        {
-            Console.WriteLine("결과: 과체중");
+            Console.WriteLine($"보유한 {itemName}의 수량: {itemCount}");
         }
         else
         {
-            Console.WriteLine("결과: 비만");
+            Console.WriteLine($"보유한 {itemName}이 없습니다.");
         }
-
-
     }
 }
