@@ -7,7 +7,7 @@
     <ProjectGuid>{A4BC940E-37AF-4D36-9B6E-FDBA1D50EE45}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Black_Jack_Game</RootNamespace>
-    <AssemblyName>Black_Jack_Game</AssemblyName>
+    <AssemblyName>Black Jack Game</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
