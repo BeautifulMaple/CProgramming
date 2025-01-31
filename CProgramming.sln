@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Overloding", "Overloding\Ov
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recursive Function", "Recursive Function\Recursive Function.csproj", "{EC266F68-B776-4080-90E9-FAB12E43CC95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Numbers matching game", "Numbers matching game\Numbers matching game.csproj", "{E7322595-8100-434A-85D5-6436D75F6218}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tic Tac Tos", "Tic Tac Tos\Tic Tac Tos.csproj", "{F7DD3266-3BA7-4C60-8973-6D3D4B04961D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{EC266F68-B776-4080-90E9-FAB12E43CC95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC266F68-B776-4080-90E9-FAB12E43CC95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC266F68-B776-4080-90E9-FAB12E43CC95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7322595-8100-434A-85D5-6436D75F6218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7322595-8100-434A-85D5-6436D75F6218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7322595-8100-434A-85D5-6436D75F6218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7322595-8100-434A-85D5-6436D75F6218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7DD3266-3BA7-4C60-8973-6D3D4B04961D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7DD3266-3BA7-4C60-8973-6D3D4B04961D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7DD3266-3BA7-4C60-8973-6D3D4B04961D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7DD3266-3BA7-4C60-8973-6D3D4B04961D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

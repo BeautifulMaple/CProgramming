@@ -42,7 +42,7 @@
         //Random random = new Random();  // 랜덤 객체 생성
         //int[] numbers = new int[3];  // 3개의 숫자를 저장할 배열
 
-        //// 3개의 랜덤 숫자 생성하여 배열에 저장
+        // 3개의 랜덤 숫자 생성하여 배열에 저장
         //for (int i = 0; i < numbers.Length; i++)
         //{
         //    numbers[i] = random.Next(1, 10);
@@ -54,7 +54,7 @@
         //    Console.Write("3개의 숫자를 입력하세요 (1~9): ");
         //    int[] guesses = new int[3];  // 사용자가 입력한 숫자를 저장할 배열
 
-        //    for(int i = 0;i < guesses.Length;i++)
+        //    for (int i = 0; i < guesses.Length; i++)
         //    {
         //        guesses[i] = int.Parse(Console.ReadLine());
         //    }
