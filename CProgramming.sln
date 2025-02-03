@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate", "Exception\Deleg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuncAndAction", "FuncAndAction\FuncAndAction.csproj", "{CFC69ABB-990A-420B-855F-8D7DD383746E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGTextGame", "RPGTextGame\RPGTextGame.csproj", "{E75777BA-D85D-4F52-8E06-5ED44BDC427A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CFC69ABB-990A-420B-855F-8D7DD383746E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFC69ABB-990A-420B-855F-8D7DD383746E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFC69ABB-990A-420B-855F-8D7DD383746E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E75777BA-D85D-4F52-8E06-5ED44BDC427A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E75777BA-D85D-4F52-8E06-5ED44BDC427A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E75777BA-D85D-4F52-8E06-5ED44BDC427A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E75777BA-D85D-4F52-8E06-5ED44BDC427A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
