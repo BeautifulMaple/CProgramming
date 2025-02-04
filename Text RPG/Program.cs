@@ -414,7 +414,7 @@ namespace Text_RPG
                 Console.WriteLine();
                 Console.WriteLine($"[아이템 목록]");
 
-                for(int i = 0; i < itemsForSale.Count; i++)
+                for (int i = 0; i < itemsForSale.Count; i++)
                 {
                     EquipItem item = itemsForSale[i];
                     bool isPurchased = player.Inventory.HasItem(item);
@@ -520,7 +520,7 @@ namespace Text_RPG
                     {
                         player.Inventory.ShowInventory();
                     }
-                    else if(input == 3)
+                    else if (input == 3)
                     {
                         store.ShowStore();
                         store.BuyItem();
