@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sorting algorithm", "sorting algorithm\sorting algorithm.csproj", "{BF404B4E-0A76-4C92-B541-8212280E0A9C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quick Sort", "Quick Sort\Quick Sort.csproj", "{4126C3EE-C325-4FA9-851F-D126A267DC2E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph", "Graph\Graph.csproj", "{0AC4958C-C95F-4EFA-88DF-55EA5EDB8DAE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Text RPG", "Text RPG\Text RPG.csproj", "{2477BDB8-486A-405D-B0BA-CAE6783FC47B}"
 EndProject
 Global
@@ -17,18 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BF404B4E-0A76-4C92-B541-8212280E0A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF404B4E-0A76-4C92-B541-8212280E0A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF404B4E-0A76-4C92-B541-8212280E0A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF404B4E-0A76-4C92-B541-8212280E0A9C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4126C3EE-C325-4FA9-851F-D126A267DC2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4126C3EE-C325-4FA9-851F-D126A267DC2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4126C3EE-C325-4FA9-851F-D126A267DC2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4126C3EE-C325-4FA9-851F-D126A267DC2E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0AC4958C-C95F-4EFA-88DF-55EA5EDB8DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0AC4958C-C95F-4EFA-88DF-55EA5EDB8DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0AC4958C-C95F-4EFA-88DF-55EA5EDB8DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0AC4958C-C95F-4EFA-88DF-55EA5EDB8DAE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2477BDB8-486A-405D-B0BA-CAE6783FC47B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2477BDB8-486A-405D-B0BA-CAE6783FC47B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2477BDB8-486A-405D-B0BA-CAE6783FC47B}.Release|Any CPU.ActiveCfg = Release|Any CPU

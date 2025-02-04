@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static Text_RPG.Program;
 
 namespace Text_RPG
@@ -48,14 +49,14 @@ namespace Text_RPG
             {
                 int totalAttack = Attack;
                 foreach (var item in Inventory.GetEquippedItems())
-                    totalAttack += item.AttackBonus;
+                    totalAttack += item.Info.AttackBonus;
                 return totalAttack;
             }
             public int GetTotalDefense()
             {
                 int totalDefense = Defense;
                 foreach (var item in Inventory.GetEquippedItems())
-                    totalDefense += item.DefenseBonus;
+                    totalDefense += item.Info.DefenseBonus;
                 return totalDefense;
 
             }
@@ -103,14 +104,14 @@ namespace Text_RPG
             {
                 int totalAttack = Attack;
                 foreach (var item in Inventory.GetEquippedItems())
-                    totalAttack += item.AttackBonus;
+                    totalAttack += item.Info.AttackBonus;
                 return totalAttack;
             }
             public int GetTotalDefense()
             {
                 int totalDefense = Defense;
                 foreach (var item in Inventory.GetEquippedItems())
-                    totalDefense += item.DefenseBonus;
+                    totalDefense += item.Info.DefenseBonus;
                 return totalDefense;
 
             }
@@ -121,7 +122,7 @@ namespace Text_RPG
                 {
                     Console.Clear();
                     Console.WriteLine($"Lv. {Level}");
-                    Console.WriteLine($"Chad ({Job})");
+                    Console.WriteLine($"{Name} ({Job})");
                     Console.WriteLine($"공격력 : {Attack} (+{GetTotalAttack() - Attack})");
                     Console.WriteLine($"방어력 : {Defense} (+{GetTotalDefense() - Defense})");
                     Console.WriteLine($"체  력 : {Health}");
@@ -157,14 +158,14 @@ namespace Text_RPG
             {
                 int totalAttack = Attack;
                 foreach (var item in Inventory.GetEquippedItems())
-                    totalAttack += item.AttackBonus;
+                    totalAttack += item.Info.AttackBonus;
                 return totalAttack;
             }
             public int GetTotalDefense()
             {
                 int totalDefense = Defense;
                 foreach (var item in Inventory.GetEquippedItems())
-                    totalDefense += item.DefenseBonus;
+                    totalDefense += item.Info.DefenseBonus;
                 return totalDefense;
 
             }
@@ -175,7 +176,7 @@ namespace Text_RPG
                 {
                     Console.Clear();
                     Console.WriteLine($"Lv. {Level}");
-                    Console.WriteLine($"Chad ({Job})");
+                    Console.WriteLine($"{Name} ({Job})");
                     Console.WriteLine($"공격력 : {Attack} (+{GetTotalAttack() - Attack})");
                     Console.WriteLine($"방어력 : {Defense} (+{GetTotalDefense() - Defense})");
                     Console.WriteLine($"체  력 : {Health}");
@@ -187,70 +188,80 @@ namespace Text_RPG
                     if (input == "0") break; // 0 입력 시 종료
                 }
             }
-
         }
-        public class Item
+        public struct ItemInfo
         {
-            public string Name { get; }         // 아이템 이름
-            public string Description { get; }  // 설명
-            public Item(string name, string description)
+            public string Name { get; }
+            public string Description { get; }
+            public int AttackBonus { get; }
+            public int DefenseBonus { get; }
+            public int Price { get; }
+
+            public ItemInfo(string name, string description, int attackBonus, int defenseBonus, int price) // ✅ 생성자 수정
             {
                 Name = name;
                 Description = description;
-            }
-
-            public virtual string GetItemInfo()
-            {
-                return $"{Name} | {Description}";
-            }
-        }
-        // 장비 아이템 클래스 (공격력 or 방어력 보너스)
-        public class EquipItem : Item
-        {
-            public int Price { get; set; }          // 아이템 가격 
-            public int AttackBonus { get; }         // 공격력
-            public int DefenseBonus { get; }        // 방어력
-            public bool IsEquipped { get; set; }    // 장착 여부
-
-            public EquipItem(string name, string description, int attackBonus, int defenseBonus)
-                : base(name, description)
-            {
                 AttackBonus = attackBonus;
                 DefenseBonus = defenseBonus;
-                IsEquipped = false; // 기본값: 장착 안 됨
+                Price = price;
+            }
+            public string GetItemInfo()
+            {
+                return $"{Name} | 가격: {Price}G | {Description}";
             }
 
-            public override string GetItemInfo()
+
+            //public override string ToString()
+            //{
+            //    return $"{Name} | {Description} | 공격력 +{AttackBonus} | 방어력 +{DefenseBonus}";
+            //}
+        }
+        // 장비 아이템 클래스 (공격력 or 방어력 보너스)
+        public class EquipItem
+        {
+            public ItemInfo Info { get; }  // 불변 아이템 정보
+            public bool IsEquipped { get; set; } // 장착 여부
+
+            public EquipItem(string name, string description, int attackBonus, int defenseBonus, int price)
             {
-                string equipMarker = IsEquipped ? "[E]" : "";
-                string statBonus = AttackBonus > 0 ? $"공격력 +{AttackBonus}" : $"방어력 +{DefenseBonus}";
-                return $"{equipMarker}{Name}      | {statBonus}      | {Description}";
+                Info = new ItemInfo(name, description, attackBonus, defenseBonus, price);
+                IsEquipped = false;
+            }
+
+            public string GetItemInfo()
+            {
+                string equipMarker = IsEquipped ? "[E] " : "";
+                return $"{equipMarker}{Info}";
             }
         }
 
         public class Inventory
         {
-            private List<Item> items = new List<Item>();
+            private List<ItemInfo> items = new List<ItemInfo>();
             private ICharacter owner;
 
             public Inventory(ICharacter character)
             {
                 owner = character;
             }
-            public void AddItem(Item item)
+            public void AddItem(ItemInfo item)
             {
                 items.Add(item);
             }
 
-            public bool HasItem(Item item)
+            public bool HasItem(ItemInfo item)
             {
                 return items.Any(i => i.Name == item.Name);
             }
 
             public List<EquipItem> GetEquippedItems()
             {
-                return items.OfType<EquipItem>().Where(e => e.IsEquipped).ToList();
+                return items
+                    .OfType<EquipItem>() // EquipItem 타입만 선택
+                    .Where(equip => equip.IsEquipped) // 착용 여부 필터링
+                    .ToList();
             }
+
 
             public void ShowInventory()
             {
@@ -319,7 +330,7 @@ namespace Text_RPG
                         {
                             EquipItem selectedItem = equipItems[choice - 1];
                             selectedItem.IsEquipped = !selectedItem.IsEquipped;
-                            Console.WriteLine($"{selectedItem.Name} {(selectedItem.IsEquipped ? "장착" : "해제")} 완료!");
+                            Console.WriteLine($"{selectedItem.Info.Name} {(selectedItem.IsEquipped ? "장착" : "해제")} 완료!");
                         }
                         else
                         {
@@ -384,21 +395,21 @@ namespace Text_RPG
 
         public class Store
         {
-            private List<EquipItem> itemsForSale;   // 상점에서 판매하는 아이템 목록
+            private List<ItemInfo> itemsForSale;    // 상점에서 판매하는 아이템 목록
             private ICharacter player;              // 플레이어 정보
 
 
             public Store(ICharacter player)
             {
                 this.player = player;
-                itemsForSale = new List<EquipItem>
+                itemsForSale = new List<ItemInfo>
                 {
-                    new EquipItem("수련자 갑옷", "수련에 도움을 주는 갑옷입니다.", 0, 5) { Price = 1000 },
-                    new EquipItem("무쇠갑옷", "무쇠로 만들어져 튼튼한 갑옷입니다.", 0, 9) { Price = 2000 },
-                    new EquipItem("스파르타의 갑옷", "스파르타 전사들이 사용한 전설의 갑옷입니다.", 0, 15) { Price = 3500 },
-                    new EquipItem("낡은 검", "쉽게 볼 수 있는 낡은 검입니다.", 2, 0) { Price = 600 },
-                    new EquipItem("청동 도끼", "어디선가 사용됐던 도끼입니다.", 5, 0) { Price = 1500 },
-                    new EquipItem("스파르타의 창", "스파르타 전사들이 사용한 전설의 창입니다.", 7, 0) { Price = 4000 }
+                    new ItemInfo("수련자 갑옷", "수련에 도움을 주는 갑옷입니다.", 0, 5, 1000),
+                    new ItemInfo("무쇠갑옷", "무쇠로 만들어져 튼튼한 갑옷입니다.", 0, 9, 2000),
+                    new ItemInfo("스파르타의 갑옷", "스파르타 전사들이 사용한 전설의 갑옷입니다.", 0, 15, 3500),
+                    new ItemInfo("낡은 검", "쉽게 볼 수 있는 낡은 검입니다.", 2, 0, 600),
+                    new ItemInfo("청동 도끼", "어디선가 사용됐던 도끼입니다.", 5, 0, 1500 ),
+                    new ItemInfo("스파르타의 창", "스파르타 전사들이 사용한 전설의 창입니다.", 7, 0, 4000)
                 };
             }
 
@@ -416,9 +427,9 @@ namespace Text_RPG
 
                 for (int i = 0; i < itemsForSale.Count; i++)
                 {
-                    EquipItem item = itemsForSale[i];
+                    ItemInfo item = itemsForSale[i];
                     bool isPurchased = player.Inventory.HasItem(item);
-                    string priceDisplay = isPurchased ? "구매완료" : $"{item.Price} G";
+                    string priceDisplay = isPurchased ? "구매완료" : $"{item} G";
 
                     Console.WriteLine($"{i + 1}. {item.Name} | 공격력 +{item.AttackBonus} | 방어력 +{item.DefenseBonus} | {item.Description} | {priceDisplay}");
                 }
@@ -452,7 +463,7 @@ namespace Text_RPG
                     }
                     else
                     {
-                        EquipItem selectedItem = itemsForSale[choice - 1];
+                        ItemInfo selectedItem = itemsForSale[choice - 1];
 
                         if (player.Inventory.HasItem(selectedItem))
                         {
@@ -467,14 +478,13 @@ namespace Text_RPG
                             player.Gold -= selectedItem.Price;
 
                             // 새로운 인스턴스를 생성해서 추가
-                            EquipItem newItem = new EquipItem(
+                            ItemInfo newItem = new ItemInfo(
                                 selectedItem.Name,
                                 selectedItem.Description,
                                 selectedItem.AttackBonus,
-                                selectedItem.DefenseBonus)
-                            {
-                                Price = selectedItem.Price
-                            };
+                                selectedItem.DefenseBonus,
+                                selectedItem.Price // 가격 전달
+                        );
 
                             player.Inventory.AddItem(newItem); // 새로운 아이템 추가
                             Console.WriteLine($"{newItem.Name}을(를) 구매했습니다!");
