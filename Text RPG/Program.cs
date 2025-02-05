@@ -270,31 +270,50 @@ namespace Text_RPG
 
             public void Rest()
             {
-                Console.Clear();
-                Console.WriteLine("휴식하기");
-                Console.WriteLine("500 G 를 내면 체력을 회복할 수 있습니다.");
-                Console.WriteLine($"(보유 골드 : {player.Gold} G)\n");
-
-                Console.WriteLine("1. 휴식하기");
-                Console.WriteLine("0. 나가기\n");
-
-                Console.Write("원하시는 행동을 입력해주세요.\n>> ");
-                int.TryParse(Console.ReadLine(), out int input);
-
-                if (input == 1)
+                while (true) // 🔹 반복문 추가 (사용자가 0을 입력할 때까지 계속 메뉴 유지)
                 {
-                    if (player.Gold >= 500)
+                    Console.Clear();
+                    Console.WriteLine("휴식하기");
+                    Console.WriteLine("500 G 를 내면 체력을 회복할 수 있습니다.");
+                    Console.WriteLine($"(보유 골드 : {player.Gold} G, 현재 체력 : {player.Health})\n");
+
+                    Console.WriteLine("1. 휴식하기");
+                    Console.WriteLine("0. 나가기\n");
+
+                    Console.Write("원하시는 행동을 입력해주세요.\n>> ");
+
+                    // 🔹 TryParse를 사용하여 숫자로 변환
+                    if (!int.TryParse(Console.ReadLine(), out int input))
                     {
-                        player.Gold -= 500;    // 골드 차감
-                        player.Health = player.BaseHealth; // 체력 회복
-                        Console.WriteLine("\n 휴식을 완료했습니다. 체력이 회복되었습니다!\n");
+                        Console.WriteLine("\n잘못된 입력입니다. 숫자를 입력해주세요.");
+                        Console.ReadKey();
+                        continue;  // 잘못된 입력이면 반복문 처음으로 이동
+                    }
+
+                    if (input == 0)
+                        break; //  입력 시 루프 종료
+
+                    if (input == 1)
+                    {
+                        if (player.Gold >= 500)
+                        {
+                            player.Gold -= 500;     // 골드 차감
+                            player.Health = player.BaseHealth;   //  체력 회복
+                            Console.WriteLine("\n 휴식을 완료했습니다. 체력이 회복되었습니다!\n");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n Gold 가 부족합니다. 휴식을 할 수 없습니다.\n");
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("\n Gold 가 부족합니다.\n");
+                        Console.WriteLine("\n 잘못된 입력입니다. 0 또는 1을 입력하세요.");
                     }
+
+                    Console.WriteLine("\n아무 키나 눌러 계속하세요...");
+                    Console.ReadKey();  // 메시지를 확인할 수 있도록 대기
                 }
-                Console.ReadKey();
             }
         }
 
