@@ -294,6 +294,7 @@ namespace Text_RPG
                         Console.WriteLine("\n Gold 가 부족합니다.\n");
                     }
                 }
+                Console.ReadKey();
             }
         }
 
