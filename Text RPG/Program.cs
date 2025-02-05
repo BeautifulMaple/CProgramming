@@ -17,10 +17,11 @@ namespace Text_RPG
             string Job { get; }   // 캐릭터 직업
             int Attack { get; }   // 기본 공격력
             int Defense { get; }  // 기본 방어력
-            int Health { get; }   // 체력
+            int Health { get; set; }   // 체력
             int Gold { get; set; }  // 보유 골드
 
             Inventory Inventory { get; }  // 캐릭터의 인벤토리
+            int BaseHealth { get; }
 
             void ShowStatus();  // 캐릭터 상태 출력
 
@@ -258,6 +259,45 @@ namespace Text_RPG
             }
         }
 
+        public class Resttime
+        {
+            private ICharacter player;
+
+            public Resttime(ICharacter player)  // 생성자에서 플레이어 정보를 받음
+            {
+                this.player = player;
+            }
+
+            public void Rest()
+            {
+                Console.Clear();
+                Console.WriteLine("휴식하기");
+                Console.WriteLine("500 G 를 내면 체력을 회복할 수 있습니다.");
+                Console.WriteLine($"(보유 골드 : {player.Gold} G)\n");
+
+                Console.WriteLine("1. 휴식하기");
+                Console.WriteLine("0. 나가기\n");
+
+                Console.Write("원하시는 행동을 입력해주세요.\n>> ");
+                int.TryParse(Console.ReadLine(), out int input);
+
+                if (input == 1)
+                {
+                    if (player.Gold >= 500)
+                    {
+                        player.Gold -= 500;    // 골드 차감
+                        player.Health = player.BaseHealth; // 체력 회복
+                        Console.WriteLine("\n 휴식을 완료했습니다. 체력이 회복되었습니다!\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n Gold 가 부족합니다.\n");
+                    }
+                }
+            }
+        }
+
+
         public class StartGame
         {
             public void StartMenu()
@@ -268,6 +308,8 @@ namespace Text_RPG
                 Console.WriteLine("1. 상태 보기");
                 Console.WriteLine("2. 인벤토리");
                 Console.WriteLine("3. 상점");
+                Console.WriteLine("4. 던전입장");
+                Console.WriteLine("5. 휴식하기");
                 Console.WriteLine();
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 Console.Write(">> ");
@@ -420,6 +462,7 @@ namespace Text_RPG
 
             StartGame startGame = new StartGame();
             Store store = new Store(player);
+            Resttime resttime = new Resttime(player);
 
             while (true)
             {
@@ -445,6 +488,14 @@ namespace Text_RPG
                     {
                         store.ShowStore();
                         store.BuyItem();
+                    }
+                    else if (input == 4)    // 던전입장
+                    {
+                        Console.WriteLine("구현중입니다");
+                    }
+                    else if (input == 5)    // 휴식하기
+                    {
+                        resttime.Rest();
                     }
                     else
                         Console.WriteLine("잘못된 입력입니다. 1~3 사이의 숫자를 입력하세요.");
